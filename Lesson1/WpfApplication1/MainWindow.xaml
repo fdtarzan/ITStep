@@ -1,0 +1,10 @@
+﻿<Window x:Class="WpfApplication1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button Content="Start" HorizontalAlignment="Left" Margin="203,70,0,0" VerticalAlignment="Top" Width="75" Name="Start" Click="Start_Click_1"></Button>
+        <Button Content="Stop" HorizontalAlignment="Left" Margin="203,118,0,0" VerticalAlignment="Top" Width="75" Name="Stop" Click="Stop_Click_1"/>
+
+    </Grid>
+</Window>
