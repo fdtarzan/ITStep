@@ -16,7 +16,7 @@ namespace ProcessManipulation
 {
     public partial class MainWindow : Form
     {
-        //константа, идентифицирующая сообщение WM_SETTEXT
+        //константа, идентифицирующая сообщение WM_SETTEXT;
         const uint WM_SETTEXT = 0x0C;
         //импортируем функкццию SendMEssage из библиотеки user32.dll
         [DllImport("user32.dll")]
