@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModulesInAction", "ModulesI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleLibrary", "SampleLibrary\SampleLibrary.csproj", "{5CCEEB0A-50E3-4256-A751-786AB946FE96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChildProcess", "..\..\google drive\Системное программирование\Урок 1\sources\ProcessManipulation\ChildProcess\ChildProcess.csproj", "{BCEC968D-7623-45A9-9237-04474E6256EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChildProcess2", "..\..\google drive\Системное программирование\Урок 1\sources\ProcessManipulation\ChildProcess2\ChildProcess2.csproj", "{0A639A3F-5527-4252-B295-0C0A54CFD207}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessManipulation", "..\..\google drive\Системное программирование\Урок 1\sources\ProcessManipulation\ProcessManipulation\ProcessManipulation.csproj", "{4B51536A-C8C0-48DF-9124-0AD04E4B75DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +45,18 @@ Global
 		{5CCEEB0A-50E3-4256-A751-786AB946FE96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CCEEB0A-50E3-4256-A751-786AB946FE96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CCEEB0A-50E3-4256-A751-786AB946FE96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCEC968D-7623-45A9-9237-04474E6256EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCEC968D-7623-45A9-9237-04474E6256EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCEC968D-7623-45A9-9237-04474E6256EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCEC968D-7623-45A9-9237-04474E6256EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A639A3F-5527-4252-B295-0C0A54CFD207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A639A3F-5527-4252-B295-0C0A54CFD207}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A639A3F-5527-4252-B295-0C0A54CFD207}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A639A3F-5527-4252-B295-0C0A54CFD207}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B51536A-C8C0-48DF-9124-0AD04E4B75DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B51536A-C8C0-48DF-9124-0AD04E4B75DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B51536A-C8C0-48DF-9124-0AD04E4B75DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B51536A-C8C0-48DF-9124-0AD04E4B75DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
