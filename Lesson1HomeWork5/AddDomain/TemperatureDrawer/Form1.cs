@@ -20,7 +20,8 @@ namespace TemperatureDrawer
 
             DateTempInitial();
             InitializeComponent();
-
+            //zedGraph = new ZedGraphControl();
+            //Controls.Add(new Button());
             //DrawGraph();
             zedGraph.Paint +=zedGraph_Paint;
             this.Paint +=Form1_Paint;
@@ -30,7 +31,6 @@ namespace TemperatureDrawer
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
            zedGraph_Paint(zedGraph, new PaintEventArgs(zedGraph.CreateGraphics(), zedGraph.ClientRectangle));
-
         }
 
         private void zedGraph_Paint(object sender, PaintEventArgs e)
