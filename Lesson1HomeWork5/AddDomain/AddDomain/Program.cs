@@ -22,10 +22,12 @@ namespace AddDomain
             
    
         [STAThread]
-        [LoaderOptimization(LoaderOptimization.NotSpecified)]
+        [LoaderOptimization(LoaderOptimization.MultiDomain)]
         static void Main(string[] args)
         {
+           
             Application.EnableVisualStyles();
+            Console.SetWindowSize(0,0);
             TemperatureDrawer = AppDomain.CreateDomain("TemperatureDrawer");
             DataWindow = AppDomain.CreateDomain("DataWindow");
             TemperatureDrawerAsm = TemperatureDrawer.Load(AssemblyName.GetAssemblyName("TemperatureDrawer.exe"));
