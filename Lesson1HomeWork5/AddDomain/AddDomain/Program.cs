@@ -22,7 +22,7 @@ namespace AddDomain
             
    
         [STAThread]
-        [LoaderOptimization(LoaderOptimization.MultiDomain)]
+        [LoaderOptimization(LoaderOptimization.NotSpecified)]
         static void Main(string[] args)
         {
             Application.EnableVisualStyles();

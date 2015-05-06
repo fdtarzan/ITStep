@@ -34,17 +34,17 @@
             // 
             // zedGraph
             // 
-            this.zedGraph.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.zedGraph.Location = new System.Drawing.Point(0, 0);
+            this.zedGraph.Dock = System.Windows.Forms.DockStyle.;
+            this.zedGraph.Location = new System.Drawing.Point(0, 97);
             this.zedGraph.Name = "zedGraph";
-            this.zedGraph.ScrollGrace = 0;
-            this.zedGraph.ScrollMaxX = 0;
-            this.zedGraph.ScrollMaxY = 0;
-            this.zedGraph.ScrollMaxY2 = 0;
-            this.zedGraph.ScrollMinX = 0;
-            this.zedGraph.ScrollMinY = 0;
-            this.zedGraph.ScrollMinY2 = 0;
-            this.zedGraph.Size = new System.Drawing.Size(592, 471);
+            this.zedGraph.ScrollGrace = 0D;
+            this.zedGraph.ScrollMaxX = 0D;
+            this.zedGraph.ScrollMaxY = 0D;
+            this.zedGraph.ScrollMaxY2 = 0D;
+            this.zedGraph.ScrollMinX = 0D;
+            this.zedGraph.ScrollMinY = 0D;
+            this.zedGraph.ScrollMinY2 = 0D;
+            this.zedGraph.Size = new System.Drawing.Size(592, 374);
             this.zedGraph.TabIndex = 0;
             // 
             // Form1

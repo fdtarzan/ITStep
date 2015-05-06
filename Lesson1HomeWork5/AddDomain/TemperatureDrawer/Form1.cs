@@ -21,10 +21,11 @@ namespace TemperatureDrawer
             DateTempInitial();
             InitializeComponent();
             //zedGraph = new ZedGraphControl();
-            Controls.Add(new Button());
-            //DrawGraph();
-            zedGraph.Paint +=zedGraph_Paint;
-            this.Paint +=Form1_Paint;
+            Button BTN = new Button();
+            Controls.Add(BTN);
+            BTN.Click += (s, e) => { DrawGraph(); };
+            //zedGraph.Paint +=zedGraph_Paint;
+            //this.Paint +=Form1_Paint;
            
         }
 
@@ -95,6 +96,7 @@ namespace TemperatureDrawer
             pane.YAxis.Title.Text = "Temperature";
             pane.Title.Text = "Temperature Calendar";
             // Вызываем метод AxisChange (), чтобы обновить данные об осях. 
+            
             zedGraph.AxisChange();
 
             // Обновляем график
