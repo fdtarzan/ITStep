@@ -6,7 +6,7 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private ZedGraph.ZedGraphControl zedGraph;
+       
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -28,38 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.zedGraph = new ZedGraph.ZedGraphControl();
+            this.btnGraph = new System.Windows.Forms.Button();
+            this.btnSaveGraph = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // zedGraph
+            // btnGraph
             // 
-            this.zedGraph.Dock = System.Windows.Forms.DockStyle.;
-            this.zedGraph.Location = new System.Drawing.Point(0, 97);
-            this.zedGraph.Name = "zedGraph";
-            this.zedGraph.ScrollGrace = 0D;
-            this.zedGraph.ScrollMaxX = 0D;
-            this.zedGraph.ScrollMaxY = 0D;
-            this.zedGraph.ScrollMaxY2 = 0D;
-            this.zedGraph.ScrollMinX = 0D;
-            this.zedGraph.ScrollMinY = 0D;
-            this.zedGraph.ScrollMinY2 = 0D;
-            this.zedGraph.Size = new System.Drawing.Size(592, 374);
-            this.zedGraph.TabIndex = 0;
+            this.btnGraph.Location = new System.Drawing.Point(13, 13);
+            this.btnGraph.Name = "btnGraph";
+            this.btnGraph.Size = new System.Drawing.Size(91, 23);
+            this.btnGraph.TabIndex = 0;
+            this.btnGraph.Text = "Create Graph";
+            this.btnGraph.UseVisualStyleBackColor = true;
+            this.btnGraph.Click += new System.EventHandler(this.btnGraph_Click);
+            // 
+            // btnSaveGraph
+            // 
+            this.btnSaveGraph.Location = new System.Drawing.Point(110, 12);
+            this.btnSaveGraph.Name = "btnSaveGraph";
+            this.btnSaveGraph.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveGraph.TabIndex = 1;
+            this.btnSaveGraph.Text = "Save Graph";
+            this.btnSaveGraph.UseVisualStyleBackColor = true;
+            this.btnSaveGraph.Click += new System.EventHandler(this.btnSaveGraph_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 471);
-            this.Controls.Add(this.zedGraph);
+            this.ClientSize = new System.Drawing.Size(867, 638);
+            this.Controls.Add(this.btnSaveGraph);
+            this.Controls.Add(this.btnGraph);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Graph";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnGraph;
+        private System.Windows.Forms.Button btnSaveGraph;
 
         
     }

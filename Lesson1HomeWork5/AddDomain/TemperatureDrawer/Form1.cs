@@ -15,32 +15,13 @@ namespace TemperatureDrawer
     { 
         Dictionary<int, int> dateTemp;
         GraphPane pane;
+        ZedGraph.ZedGraphControl zedGraph;
         public Form1()
         {
-
             DateTempInitial();
             InitializeComponent();
-            //zedGraph = new ZedGraphControl();
-            Button BTN = new Button();
-            Controls.Add(BTN);
-            BTN.Click += (s, e) => { DrawGraph(); };
-            //zedGraph.Paint +=zedGraph_Paint;
-            //this.Paint +=Form1_Paint;
-           
         }
-
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
-           zedGraph_Paint(zedGraph, new PaintEventArgs(zedGraph.CreateGraphics(), zedGraph.ClientRectangle));
-        }
-
-        private void zedGraph_Paint(object sender, PaintEventArgs e)
-        {
-            DrawGraph();
-         
-        }
-
-
+        
         public void SetTemp(string date, string temp)
         {
             int d, t;
@@ -56,7 +37,7 @@ namespace TemperatureDrawer
             dateTemp = new Dictionary<int, int>();
             for (int i = 1; i < 32; i++)
             {
-                dateTemp.Add(i, i);
+                dateTemp.Add(i, 0);
             }
         }
         public void DrawGraph()
@@ -101,6 +82,31 @@ namespace TemperatureDrawer
 
             // Обновляем график
             zedGraph.Invalidate();
+        }
+
+        private void btnGraph_Click(object sender, EventArgs e)
+        {
+            zedGraph = new ZedGraph.ZedGraphControl();
+            zedGraph.Dock = System.Windows.Forms.DockStyle.Fill;
+            zedGraph.Location = new System.Drawing.Point(0, 50);
+            zedGraph.Name = "zedGraph";
+            zedGraph.ScrollGrace = 0D;
+            zedGraph.ScrollMaxX = 0D;
+            zedGraph.ScrollMaxY = 0D;
+            zedGraph.ScrollMaxY2 = 0D;
+            zedGraph.ScrollMinX = 0D;
+            zedGraph.ScrollMinY = 0D;
+            zedGraph.ScrollMinY2 = 0D;
+            //zedGraph.Size = this.ClientSize;
+            zedGraph.TabIndex = 0;
+            Controls.Add(zedGraph);
+            DrawGraph(); 
+        }
+
+        private void btnSaveGraph_Click(object sender, EventArgs e)
+        {
+            if (zedGraph!=null)
+            zedGraph.SaveAsBitmap();
         }
 
 

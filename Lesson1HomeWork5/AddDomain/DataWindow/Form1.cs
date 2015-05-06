@@ -41,17 +41,14 @@ namespace DataWindow
             }
         }
 
-        private void button_Click(object sender, EventArgs e)
+
+
+        private void textBox_TextChanged(object sender, EventArgs e)
         {
-            try
+            if (textBox.Text != null && comboBox.SelectedItem!=null)
             {
                 DrawerModule.GetType("TemperatureDrawer.Form1").GetMethod("SetTemp").Invoke(Drawer, new object[] { this.comboBox.SelectedItem.ToString(), this.textBox.Text });
-
-              //  DrawerModule.GetType("TemperatureDrawer.Form1").GetMethod("DrawGraph").Invoke(Drawer, null);
             }
-            catch (Exception ex)
-            { }
-
         }
 
 
