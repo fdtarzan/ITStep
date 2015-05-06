@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="ZedGraph, Version=5.1.6.417, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\root\Desktop\Новая папка\ZedGraph.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\ZedGraph.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

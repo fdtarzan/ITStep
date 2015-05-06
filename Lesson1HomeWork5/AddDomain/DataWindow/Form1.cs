@@ -17,6 +17,11 @@ namespace DataWindow
         Module DrawerModule { get; set; }
         object Drawer;
 
+        public Form1()
+        {
+            InitializeComponent();
+        }
+       
         public Form1(Module drawer, object targetWindow)
         {
            

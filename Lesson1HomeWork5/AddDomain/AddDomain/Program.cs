@@ -13,12 +13,12 @@ namespace AddDomain
 {
     class Program
     {
-        static AppDomain TemperatureDrawer;        //будет хранить объект домена приложения TextDrawer
-        static AppDomain DataWindow;    //будет хранить домена приложения TextWindow
-        static Assembly TemperatureDrawerAsm;      //будет хранить объект сборки TextDrawer.exe
-        static Assembly DataWindowAsm;  //будет хранить объект сборки TextWindow.exe
-        static Form TemperatureDrawerWindow;       //будет хранить объект окна TextDrawer
-        static Form DataWindowWnd;      //будет хранить объект окна TextWindow
+        static AppDomain TemperatureDrawer;        
+        static AppDomain DataWindow;   
+        static Assembly TemperatureDrawerAsm;      
+        static Assembly DataWindowAsm;
+        static Form TemperatureDrawerWindow;      
+        static Form DataWindowWnd;     
             
    
         [STAThread]
@@ -28,7 +28,6 @@ namespace AddDomain
             Application.EnableVisualStyles();
             TemperatureDrawer = AppDomain.CreateDomain("TemperatureDrawer");
             DataWindow = AppDomain.CreateDomain("DataWindow");
-            /*загружаем сборки с оконными приложениями в соответствующие домены приложений*/
             TemperatureDrawerAsm = TemperatureDrawer.Load(AssemblyName.GetAssemblyName("TemperatureDrawer.exe"));
             DataWindowAsm = TemperatureDrawer.Load(AssemblyName.GetAssemblyName("DataWindow.exe"));
 
@@ -42,26 +41,18 @@ namespace AddDomain
                      TemperatureDrawerWindow
                  }) as Form;
              
-            (new Thread(new ThreadStart(RunVisualizer))).Start();
+            (new Thread(new ThreadStart(RunSetter))).Start();
             (new Thread(new ThreadStart(RunDrawer))).Start();
         }
 
         static void RunDrawer()
         {
-            /*запускаем окно модально в текущем потоке*/
-
-           
-            TemperatureDrawerWindow.ShowDialog();
-            
-            /*отгружаем домен приложения*/
-            Application.Exit();
-           
+           TemperatureDrawerWindow.ShowDialog();
+           Application.Exit();
         }
-        static void RunVisualizer()
+        static void RunSetter()
         {
-            /*запускаем окно модально в текущем потоке*/
             DataWindowWnd.ShowDialog();
-            /*завершаем работу приложения, следствием чего станет закрытие потока*/
             Application.Exit();
         }
     }
