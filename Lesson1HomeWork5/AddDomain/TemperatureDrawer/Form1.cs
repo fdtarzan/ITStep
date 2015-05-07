@@ -29,7 +29,10 @@ namespace TemperatureDrawer
             if (Int32.TryParse(date, out d) && Int32.TryParse(temp, out t))
             {
                 dateTemp[d]=t;
-                DrawGraph();
+                if (zedGraph != null)
+                {
+                    DrawGraph();
+                }
             }
 
         }
