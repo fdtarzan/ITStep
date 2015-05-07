@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZedGraph;
@@ -105,8 +106,20 @@ namespace TemperatureDrawer
 
         private void btnSaveGraph_Click(object sender, EventArgs e)
         {
-            if (zedGraph!=null)
-            zedGraph.SaveAsBitmap();
+            try
+            {
+                if (zedGraph != null)
+                {
+                    Thread t = new Thread(zedGraph.SaveAsBitmap);
+                    t.IsBackground = true;
+                    t.SetApartmentState (ApartmentState.STA);
+                    t.Start();
+                    t.Join();
+                   // zedGraph.SaveAsBitmap();
+                }
+            }
+            catch (Exception ex)
+            { MessageBox.Show(ex.Message); }
         }
 
 

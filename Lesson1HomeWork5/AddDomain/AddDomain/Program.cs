@@ -27,7 +27,6 @@ namespace AddDomain
         {
            
             Application.EnableVisualStyles();
-            Console.SetWindowSize(0,0);
             TemperatureDrawer = AppDomain.CreateDomain("TemperatureDrawer");
             DataWindow = AppDomain.CreateDomain("DataWindow");
             TemperatureDrawerAsm = TemperatureDrawer.Load(AssemblyName.GetAssemblyName("TemperatureDrawer.exe"));
