@@ -13,12 +13,20 @@ namespace Semaphores
         {
             try
             {
-                Semaphore s = new Semaphore(0, 5, "My_SEMAPHORE");
+                Semaphore s = new Semaphore(5, 5, "My_SEMAPHORE");
                 //s.Release();
-            
-
+                if(s.WaitOne(0))
+                {
+                
             for (int i = 0; i < 6; ++i)
                 ThreadPool.QueueUserWorkItem(SomeMethod, s);
+                }   
+                else
+            {
+           
+            Console.WriteLine("progra");
+                    Console.ReadLine();
+                }
 
             }
             catch (Exception ex)
@@ -26,7 +34,10 @@ namespace Semaphores
                 Console.WriteLine(ex.Message);
             }
             Console.ReadKey();
-        }
+   
+           
+            }
+
 
         static void SomeMethod(object obj)
         {
@@ -55,5 +66,9 @@ namespace Semaphores
                     Console.WriteLine("Таймаут для потока {0} истек. Повторное ожидание", Thread.CurrentThread.ManagedThreadId);
             }
         }
-    }
+    }  
 }
+
+
+
+
