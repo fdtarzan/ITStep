@@ -9,108 +9,105 @@ namespace ProcessTree
 {
     public partial class MForm : Form
     {
-        List<int> parent;
+        //List<int> parent;
         List<Process> parentProc;
+        List<Process> parentProc1;
+        List<Process> parentProc2;
+        List<Process> parentProc3;
         Process[] p;
         TreeNode rootNode;
-       
+
         public MForm()
         {
-            
+
             InitializeComponent();
             p = Process.GetProcesses();
-           // parent = new List<int>();
+            // parent = new List<int>();
             parentProc = new List<Process>();
-          
+            parentProc1 = new List<Process>();
+            parentProc2 = new List<Process>();
+            parentProc3 = new List<Process>();
+
 
             foreach (Process el in p)
             {
                 if (GetParentProcessId(el.Id) == 0)
                 {
-                    parentProc.Add(el); 
-                    rootNode = new TreeNode(el.ProcessName);
-                    FillTree(parentProc, rootNode);
-                    treeView1.Nodes.Add(rootNode); 
+                   // parentProc.Add(el);
                 }
-
+                else
+                {
+                    if (!parentProc.Exists(c => c.Id == GetParentProcessId(el.Id)))
+                    {
+                        try
+                        {
+                            parentProc.Add(Process.GetProcessById(GetParentProcessId(el.Id)));
+                        }
+                        catch (Exception ex)
+                        {
+                             // MessageBox.Show(ex.Message);
+                        }
+                    }
+                }
             }
-           
-           
 
            
-            try
-            {
-               // FillTree(parentProc, rootNode);
-             //   treeView1.Nodes.Add(rootNode); 
-            }
-            catch (Exception ex)
-            { }
+                rootNode = new TreeNode("Processes");
+                FillTree(parentProc, rootNode);
+                treeView1.Nodes.Add(rootNode);
+
+
+
+
+                //   MessageBox.Show(parent.Count.ToString());
+
+                // foreach (var el in parentProc)
+                //{
+
+                //     TreeNode tn = new TreeNode(el.ProcessName);
+
+                //     treeView1.Nodes.Add(tn);
+                //    foreach (var e in GetChildProcesses(el))
+                //    {
+                //        tn.Nodes.Add(e.ProcessName);
+                //    }
+
+                //}
+                //  MessageBox.Show(parentProc.Count.ToString());
+
+
             
-          //   MessageBox.Show(parent.Count.ToString());
-
-            // foreach (var el in parentProc)
-            //{
-               
-            //     TreeNode tn = new TreeNode(el.ProcessName);
-
-            //     treeView1.Nodes.Add(tn);
-            //    foreach (var e in GetChildProcesses(el))
-            //    {
-            //        tn.Nodes.Add(e.ProcessName);
-            //    }
-               
-            //}
-          //  MessageBox.Show(parentProc.Count.ToString());
-           
-
         }
         public void FillTree(List<Process> pl, TreeNode nodeToAddTo)
         {
             TreeNode aNode;
             foreach (var el in pl)
             {
-                aNode = new TreeNode(el.ProcessName);
-                
-                if (GetChildProcesses(el)!= null )
+                if (el.ProcessName != "Idle")
                 {
-                    FillTree(GetChildProcesses(el), aNode);
-                   break;
+                    aNode = new TreeNode(el.ProcessName);
+                    nodeToAddTo.Nodes.Add(aNode);
+                    if (GetChildProcesses(el).Count != 0)
+                    {
+                        FillTree(GetChildProcesses(el), aNode);
+                    }
                 }
-                    
-                else
-                {
-                    break;
-                }
-                nodeToAddTo.Nodes.Add(aNode);
             }
         
         }
         int GetParentProcessId(int Id)
         {
-            int parentId = 0;
-            using (ManagementObject obj = new ManagementObject("win32_process.handle=" + Id.ToString()))
-            {
-                obj.Get();
-                parentId = Convert.ToInt32(obj["ParentProcessId"]);
-            }
-            return parentId;
+           
+                int parentId = 0;
+                using (ManagementObject obj = new ManagementObject("win32_process.handle=" + Id.ToString()))
+                {
+                    obj.Get();
+                    parentId = Convert.ToInt32(obj["ParentProcessId"]);
+                }
+                return parentId;
+           
         }
         
-        public int? GetParentId(Process process)
-        {
-        // query the management system objects
-        string queryText = string.Format("select parentprocessid from win32_process where processid = {0}", process.Id);
-        using (var searcher = new ManagementObjectSearcher(queryText))
-        {
-            foreach (var obj in searcher.Get())
-            {
-                object data = obj.Properties["parentprocessid"].Value;
-                if (data != null)
-                    return Convert.ToInt32(data);
-            }
-        }
-        return null;
-        }
          public  List<Process> GetChildProcesses(Process process)
          {
              var results = new List<Process>();
