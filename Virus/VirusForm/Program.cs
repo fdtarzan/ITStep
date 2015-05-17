@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VirusForm
@@ -17,6 +14,8 @@ namespace VirusForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+            VirusShowForm.EnableCTRLALTDEL();
         }
+
     }
 }
