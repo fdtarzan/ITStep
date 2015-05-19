@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DNS_IP", "DNS_IP\DNS_IP.csproj", "{FA78647C-C28E-478D-B7F0-0FE4763974EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Download_site", "Download_site\Download_site.csproj", "{879F3F97-0DBB-4EB8-8518-5267CF2D81F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA78647C-C28E-478D-B7F0-0FE4763974EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA78647C-C28E-478D-B7F0-0FE4763974EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA78647C-C28E-478D-B7F0-0FE4763974EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA78647C-C28E-478D-B7F0-0FE4763974EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{879F3F97-0DBB-4EB8-8518-5267CF2D81F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{879F3F97-0DBB-4EB8-8518-5267CF2D81F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{879F3F97-0DBB-4EB8-8518-5267CF2D81F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{879F3F97-0DBB-4EB8-8518-5267CF2D81F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
