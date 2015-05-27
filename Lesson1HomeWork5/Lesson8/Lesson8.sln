@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Json", "Json\Json.csproj", "{C7A68E19-AE27-40DB-8215-AA8E6430DACC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7A68E19-AE27-40DB-8215-AA8E6430DACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7A68E19-AE27-40DB-8215-AA8E6430DACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7A68E19-AE27-40DB-8215-AA8E6430DACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7A68E19-AE27-40DB-8215-AA8E6430DACC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
