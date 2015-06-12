@@ -20,7 +20,7 @@ namespace OpenPops
             using (Pop3Client p = new Pop3Client())
             {
                 p.Connect("pop3.ukr.net", 110, false);
-                p.Authenticate("fdtarzan", "Alo3bnvm*");
+                p.Authenticate("", "*");
                 int messageCount = p.GetMessageCount();
                 for (int i = messageCount; i > 0; i--)
                 {

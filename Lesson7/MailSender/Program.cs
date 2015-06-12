@@ -15,11 +15,11 @@ namespace MailSender
             try
             {
                 SmtpClient sc = new SmtpClient("smtp.gmail.com", 587);
-                sc.Credentials = new NetworkCredential("fdtarzan", "Alo3bnvm*");
+                sc.Credentials = new NetworkCredential("", "");
                 sc.EnableSsl = true;
                 MailMessage mm = new MailMessage();
-                mm.From = new MailAddress("tarzan@ukrwest.net");
-                mm.To.Add(new MailAddress("fdtarzan@gmail.com"));
+                mm.From = new MailAddress("");
+                mm.To.Add(new MailAddress(""));
                 mm.Subject = "hello";
                 mm.Body = "test";
                 
