@@ -7,22 +7,21 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
+
 namespace WCFConsoleServiceDB
 {
     class Program
     {
         static void Main(string[] args)
         {
-          //  ServiceHost sh = new ServiceHost(typeof(Auth), new Uri("http://localhost/Auth/"));
-          //  sh.Open();
-          //
-          //  Console.WriteLine("-------------------");
-          //  Console.ReadLine();
-          //  sh.Close();
+            ServiceHost sh = new ServiceHost(typeof(Auth), new Uri("http://localhost:10000/Auth/"));
+            sh.Open();
+          
+            Console.WriteLine("-------------------");
+            Console.ReadLine();
+            sh.Close();
 
-            Auth a = new Auth();
-            string t = a.Autorize("Marly", "123");
-            Console.WriteLine(t);
+          
 
 
         }
@@ -33,12 +32,16 @@ namespace WCFConsoleServiceDB
     {
         [OperationContract]
         string Autorize(string user, string pass);
-
+        [OperationContract]
+        string UserInfo(string token);
     }
+
     [DataContract]
     public class User
     {
-    [DataMember]
+        [DataMember]
+        public string ss;
+        [DataMember]
         public String LastName { set; get; }
         [DataMember]
         public String FirstName { set; get; }
@@ -61,7 +64,7 @@ namespace WCFConsoleServiceDB
     {
         public string Autorize(string user, string pass)
         {
-            using (var ctx = new AuthServiceEntities2())
+            using (var ctx = new AuthServiceEntities())
             {
 
                 var user1 = from u in ctx.Users
@@ -87,11 +90,31 @@ namespace WCFConsoleServiceDB
 
                     }
                 }
-                    return JsonConvert.SerializeObject(new Users());
+                return "LoginError";
              
             }
             
             
+        }
+
+        public string UserInfo(string token)
+        {
+            using (var ctx = new AuthServiceEntities())
+            {
+
+                var user1 = from u in ctx.Users
+                            where u.Token == token
+                            select u;
+                if (user1.FirstOrDefault() != null)
+                {
+                    User u = new User();
+                    u.LastName = user1.FirstOrDefault().LastName;
+                    u.FirstName = user1.FirstOrDefault().FirstName;
+                    return JsonConvert.SerializeObject(u);
+                }
+                return "Incorrect Token";
+            }
+        
         }
         private string TokenGen(int length)
         {
