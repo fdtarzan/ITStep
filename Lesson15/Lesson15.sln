@@ -6,6 +6,13 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFConsoleServiceDB", "WCFConsoleServiceDB\WCFConsoleServiceDB.csproj", "{3EA01F3C-1873-4461-B1DD-CAC2652C97A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFDBClient", "WCFDBClient\WCFDBClient.csproj", "{56459DF4-B278-4BE5-9DD8-FF6D5CA52EE6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{16F298E4-4476-4742-980B-3D76B4C10A43} = {16F298E4-4476-4742-980B-3D76B4C10A43}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServiceLibrary1", "WcfServiceLibrary1\WcfServiceLibrary1.csproj", "{16F298E4-4476-4742-980B-3D76B4C10A43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceDB_Demo", "WindowsServiceDB_Demo\WindowsServiceDB_Demo.csproj", "{27694FE5-5B4C-46F3-B464-A71CC981AC03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +28,14 @@ Global
 		{56459DF4-B278-4BE5-9DD8-FF6D5CA52EE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56459DF4-B278-4BE5-9DD8-FF6D5CA52EE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56459DF4-B278-4BE5-9DD8-FF6D5CA52EE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16F298E4-4476-4742-980B-3D76B4C10A43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16F298E4-4476-4742-980B-3D76B4C10A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16F298E4-4476-4742-980B-3D76B4C10A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16F298E4-4476-4742-980B-3D76B4C10A43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27694FE5-5B4C-46F3-B464-A71CC981AC03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27694FE5-5B4C-46F3-B464-A71CC981AC03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27694FE5-5B4C-46F3-B464-A71CC981AC03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27694FE5-5B4C-46F3-B464-A71CC981AC03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
