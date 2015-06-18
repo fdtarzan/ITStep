@@ -18,7 +18,7 @@ namespace WCF_BankService
     }
 
     //класс службы	
-    [ServiceBehavior(ConcurrencyMode=ConcurrencyMode.Single, InstanceContextMode=InstanceContextMode.PerSession)]
+    [ServiceBehavior(ConcurrencyMode=ConcurrencyMode.Single, InstanceContextMode=InstanceContextMode.PerSession)] 
     public class BankService : IBankService
     {
         static int id = 0;		//для нумерации создаваемых счетов
