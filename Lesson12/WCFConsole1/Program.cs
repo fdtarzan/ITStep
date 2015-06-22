@@ -27,13 +27,22 @@ namespace WCFConsole1
     {
         [OperationContract]
         int Add(int a, int b);
-    }
+        [OperationContract]
+        decimal Division(int a, int b);
 
+    }
+    [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
     public class MyMath : IMyMath
     {
         public int Add(int a, int b)
         {
             return a + b;
+        }
+
+
+        public decimal Division(int a, int b)
+        {
+            return a / b;
         }
     }
 

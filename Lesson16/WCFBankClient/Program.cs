@@ -19,7 +19,7 @@ namespace WCFBankClient
             while (sum > 0)
             {
                 proxy.ToDeposit(sum);
-                result = proxy.GetBalance();
+               // result = proxy.GetBalance();
                 Console.WriteLine("Депозит = {0}", result);
                 Console.WriteLine("Укажите сумму депозита:");
                 sum = Convert.ToDouble(Console.ReadLine());
@@ -27,6 +27,7 @@ namespace WCFBankClient
             }
 
             Console.WriteLine("Для завершения нажмите<ENTER>\n\n");
+            proxy.Close();
             Console.ReadLine();
         }
     }

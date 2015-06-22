@@ -194,12 +194,12 @@
   <wsdl:message name="IBankService_GetBalance_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetBalanceResponse" />
   </wsdl:message>
-  <wsdl:portType name="IBankService">
-    <wsdl:operation name="ToDeposit">
+  <wsdl:portType msc:usingSession="true" name="IBankService">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ToDeposit">
       <wsdl:input wsaw:Action="http://tempuri.org/IBankService/ToDeposit" message="tns:IBankService_ToDeposit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBankService/ToDepositResponse" message="tns:IBankService_ToDeposit_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetBalance">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetBalance">
       <wsdl:input wsaw:Action="http://tempuri.org/IBankService/GetBalance" message="tns:IBankService_GetBalance_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBankService/GetBalanceResponse" message="tns:IBankService_GetBalance_OutputMessage" />
     </wsdl:operation>

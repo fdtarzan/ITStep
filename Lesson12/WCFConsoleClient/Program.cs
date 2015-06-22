@@ -12,6 +12,8 @@ namespace WCFConsoleClient
     {
         [OperationContract]
         int Add(int a, int b);
+        [OperationContract]
+        decimal Division(int a, int b);
     }
 
     class Program
@@ -22,8 +24,10 @@ namespace WCFConsoleClient
                 new WSHttpBinding(),
                 new EndpointAddress("http://localhost/MyMath/Ep1"));
             IMyMath channel = factory.CreateChannel();
-            int result = channel.Add(40, 40);
-            Console.WriteLine("result: {0}", result);
+           // int result = channel.Add(40, 40);
+           decimal res = channel.Division(4, 0);
+          //  Console.WriteLine("result: {0}", result);
+            Console.WriteLine("result: {0}", res);
             Console.WriteLine("Для завершения нажмите <ENTER>\n");
             Console.ReadLine();
             factory.Close();

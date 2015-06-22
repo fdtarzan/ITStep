@@ -12,7 +12,7 @@ namespace WCFBankClient.ServiceReference1 {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IBankService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IBankService", SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IBankService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBankService/ToDeposit", ReplyAction="http://tempuri.org/IBankService/ToDepositResponse")]

@@ -8,7 +8,7 @@ using System.ServiceModel;
 namespace WCF_BankService
 {
     //контракт службы	
-    [ServiceContract ]
+    [ServiceContract (SessionMode=SessionMode.Required)]
     public interface IBankService
     {
         [OperationContract]
@@ -18,7 +18,7 @@ namespace WCF_BankService
     }
 
     //класс службы	
-    [ServiceBehavior(ConcurrencyMode=ConcurrencyMode.Single, InstanceContextMode=InstanceContextMode.PerSession)] 
+    [ServiceBehavior(ConcurrencyMode=ConcurrencyMode.Multiple, InstanceContextMode=InstanceContextMode.Single)] 
     public class BankService : IBankService
     {
         static int id = 0;		//для нумерации создаваемых счетов
@@ -31,16 +31,32 @@ namespace WCF_BankService
             Console.WriteLine("Создан счет № " + id.ToString());
         }
         //перевод денег на созданный счет
+     //   [OperationBehavior(TransactionScopeRequired = true, TransactionAutoComplete = true)]
         public void ToDeposit(double sum)
         {
-            Balance += sum;
+            Console.WriteLine("Изменение баланса");
+            this.Balance += sum;
+
+
+
+
+            double bal = GetBalance();
+            //Console.WriteLine("Баланс: {0}", bal);
         }
 
         //вывод текущего баланса счета
+    //   [OperationBehavior(TransactionScopeRequired = true, TransactionAutoComplete = true)]
         public double GetBalance()
         {
+            Console.WriteLine("Баланс: {0}", Balance);
             return Balance;
         }
+
+       public double GetBalance2()
+       {
+        //   OperationContext.Current.SetTransactionComplete();
+           return Balance;
+       }
     }
 
     class Program
