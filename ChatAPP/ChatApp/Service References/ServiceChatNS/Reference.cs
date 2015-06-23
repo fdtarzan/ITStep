@@ -22,16 +22,16 @@ namespace ChatApp.ServiceChatNS {
         System.Threading.Tasks.Task SendMessageToAllAsync(string message, string userName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/Connect", ReplyAction="http://tempuri.org/IChat/ConnectResponse")]
-        void Connect(string token);
+        void Connect(string userName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/Connect", ReplyAction="http://tempuri.org/IChat/ConnectResponse")]
-        System.Threading.Tasks.Task ConnectAsync(string token);
+        System.Threading.Tasks.Task ConnectAsync(string userName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/Disconect", ReplyAction="http://tempuri.org/IChat/DisconectResponse")]
-        void Disconect(string token);
+        void Disconect(string userName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChat/Disconect", ReplyAction="http://tempuri.org/IChat/DisconectResponse")]
-        System.Threading.Tasks.Task DisconectAsync(string token);
+        System.Threading.Tasks.Task DisconectAsync(string userName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,20 +83,20 @@ namespace ChatApp.ServiceChatNS {
             return base.Channel.SendMessageToAllAsync(message, userName);
         }
         
-        public void Connect(string token) {
-            base.Channel.Connect(token);
+        public void Connect(string userName) {
+            base.Channel.Connect(userName);
         }
         
-        public System.Threading.Tasks.Task ConnectAsync(string token) {
-            return base.Channel.ConnectAsync(token);
+        public System.Threading.Tasks.Task ConnectAsync(string userName) {
+            return base.Channel.ConnectAsync(userName);
         }
         
-        public void Disconect(string token) {
-            base.Channel.Disconect(token);
+        public void Disconect(string userName) {
+            base.Channel.Disconect(userName);
         }
         
-        public System.Threading.Tasks.Task DisconectAsync(string token) {
-            return base.Channel.DisconectAsync(token);
+        public System.Threading.Tasks.Task DisconectAsync(string userName) {
+            return base.Channel.DisconectAsync(userName);
         }
     }
 }

@@ -19,12 +19,12 @@ namespace ChatApp
             
         }
 
-        private async void btnConnect_Click(object sender, EventArgs e)
+        private  void btnConnect_Click(object sender, EventArgs e)
         {
             AuthClient ac = new AuthClient();
             if (tbUserName.Text != "" && tbPass.Text != "")
             {
-                string res = await ac.AutorizeAsync(tbUserName.Text, ac.CreateMD5(tbPass.Text));
+                string res =  ac.Autorize(tbUserName.Text, ac.CreateMD5(tbPass.Text));
                 ac.Close();
                 if (res == "LoginError")
                 {
@@ -37,8 +37,8 @@ namespace ChatApp
                     
                     (this.Owner as FormChatClient).Token = res;
                     (this.Owner as FormChatClient).UserName = tbUserName.Text;
-                    //fc.Parent = fc;
-                    
+                    (this.Owner as FormChatClient).Enabled = true;
+                    (this.Owner as FormChatClient).Connect();
                     this.Close();
                 
                 }
