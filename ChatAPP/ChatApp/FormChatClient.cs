@@ -12,7 +12,7 @@ using System.ServiceModel;
 
 namespace ChatApp
 {
-    //public class ChatCallback:IChatCallback
+    //public class ChatCallbackHandler:IChatCallback
     //{
     //    static InstanceContext site = new InstanceContext(new ChatCallback());
     //    public static ChatClient clientProxy = new ChatClient(site);
@@ -61,7 +61,7 @@ namespace ChatApp
         private void FormChatClient_FormClosed(object sender, FormClosedEventArgs e)
         {
             clientProxy.Disconect(UserName);
-            Application.Exit();
+            clientProxy.Close();
         }
 
         private async void btnSend_Click(object sender, EventArgs e)

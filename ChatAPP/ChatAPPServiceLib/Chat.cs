@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChatAPPServiceLib
 {
-    [ServiceBehavior(InstanceContextMode=InstanceContextMode.Single,ConcurrencyMode=ConcurrencyMode.Single)]
+    [ServiceBehavior(InstanceContextMode=InstanceContextMode.Single,ConcurrencyMode=ConcurrencyMode.Multiple)]
     class Chat:IChat
     {
         private Dictionary<string, IClientCallback> _onlineUsers=new Dictionary<string,IClientCallback>();
