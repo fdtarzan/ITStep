@@ -12,78 +12,71 @@ using System.ServiceModel;
 
 namespace ChatApp
 {
-    //public class ChatCallback:IChatCallback
-    //{
-    //    static InstanceContext site = new InstanceContext(new ChatCallback());
-    //    public static ChatClient clientProxy = new ChatClient(site);
-
-    //    public void NewMessage(string t)
-    //    {
-    //     //   lbChat.Items.Add(t);
-    //      //  this.Text = t;
-    //        //MessageBox.Show(t);
-    //    }
-
-
-    //    public void NewPrivateMessage(string t)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public void RefreshListOnline(List<string> list)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
-
-    public partial class FormChatClient : Form, IChatCallback
+    public class ChatCallbackHandler : IChatCallback
     {
-        static InstanceContext site;
-        public static ChatClient clientProxy; 
+        static InstanceContext site = new InstanceContext(new ChatCallbackHandler());
+        public static ChatClient clientProxy = new ChatClient(site);
+        
+        public delegate void MethodContainer(string t);
+        public event MethodContainer onNewMessage;
+
         public void NewMessage(string t)
         {
-            lbChat.Items.Add(t);
-          
+            onNewMessage(t);
+            //   lbChat.Items.Add(t);
+            //  this.Text = t;
             //MessageBox.Show(t);
         }
+
 
         public void NewPrivateMessage(string t)
         {
             throw new NotImplementedException();
         }
-     
+
+        public void RefreshListOnline(List<string> list)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public partial class FormChatClient : Form
+    {
+        ChatCallbackHandler cch;
         public string Token { set; get; }
         public string UserName { set; get; }
+        
         public FormChatClient()
         {
             InitializeComponent();
         }
         private void FormChatClient_FormClosed(object sender, FormClosedEventArgs e)
         {
-            clientProxy.Disconect(UserName);
+         
             Application.Exit();
         }
 
         private async void btnSend_Click(object sender, EventArgs e)
         {
 
-            await clientProxy.SendMessageToAllAsync(tbMessage.Text, UserName);
+            await ChatCallbackHandler.clientProxy.SendMessageToAllAsync(tbMessage.Text, UserName);
         }
 
         private void FormChatClient_Load(object sender, EventArgs e)
         {
-            site = new InstanceContext(new FormChatClient());
-            clientProxy = new ChatClient(site);
 
             //clientProxy.Connect(Token);
             FormAuth fa = new FormAuth();
             this.Enabled=false;
             fa.Show(this);
+            cch = new ChatCallbackHandler();
+            cch.onNewMessage += (t) => { lbChat.Items.Add(t); };
         }
 
-        public async void Connect()
+        
+        public  async void Connect()
         {
-            await clientProxy.ConnectAsync(UserName);
+            await ChatCallbackHandler.clientProxy.ConnectAsync(UserName);
         }
         public void RefreshListOnline(List<string> list)
         {
