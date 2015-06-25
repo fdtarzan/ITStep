@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace ChatAPPServiceLib
 {
-<<<<<<< HEAD
-    [ServiceBehavior(InstanceContextMode=InstanceContextMode.Single,ConcurrencyMode=ConcurrencyMode.Reentrant)]
-=======
+
     [ServiceBehavior(InstanceContextMode=InstanceContextMode.Single,ConcurrencyMode=ConcurrencyMode.Multiple)]
->>>>>>> cf521fdb4a029478cca21e6434afe4c6dac295cd
     class Chat:IChat
     {
         private Dictionary<string, IClientCallback> _onlineUsers=new Dictionary<string,IClientCallback>();
@@ -43,29 +40,49 @@ namespace ChatAPPServiceLib
         public void Connect(string userName)
         {
             _onlineUsers.Add(userName, OperationContext.Current.GetCallbackChannel<IClientCallback>());
-            //List<string> users = new List<string>();
-            //foreach (var item in _onlineUsers)
-            //{
-            //    users.Add(item.Key);
-            //}
-        
-            //foreach (var el in _onlineUsers)
-            //{
-            //    try
-            //    {
-            //        el.Value.RefreshListOnline(users);
-            //    }
-            //    catch (Exception)
-            //    {
-            //        Disconect(el.Key);
-            //    }
+            List<string> users = new List<string>();
+            foreach (var item in _onlineUsers)
+            {
+                users.Add(item.Key);
+            }
 
-            //}
+            foreach (var el in _onlineUsers)
+            {
+                try
+                {
+                    el.Value.RefreshListOnline(users);
+                }
+                catch (Exception)
+                {
+                    Disconect(el.Key);
+                  
+                }
+
+            }
         }
 
         public void Disconect(string userName)
         {
             _onlineUsers.Remove(userName);
+
+            List<string> users = new List<string>();
+            foreach (var item in _onlineUsers)
+            {
+                users.Add(item.Key);
+            }
+            foreach (var el in _onlineUsers)
+            {
+                try
+                {
+                    el.Value.RefreshListOnline(users);
+                }
+                catch (Exception)
+                {
+                    Disconect(el.Key);
+
+                }
+
+            }
         }
     }
 }

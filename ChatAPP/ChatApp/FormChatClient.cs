@@ -18,14 +18,14 @@ namespace ChatApp
         public static ChatClient clientProxy = new ChatClient(site);
         
         public delegate void MethodContainer(string t);
-        public event MethodContainer onNewMessage;
+        public delegate void MethodContainer_list(List<string> t);
+        public static event MethodContainer onNewMessage;
+        public static event MethodContainer_list onRefreshListOnline;
 
         public void NewMessage(string t)
         {
-            onNewMessage(t);
-            //   lbChat.Items.Add(t);
-            //  this.Text = t;
-            //MessageBox.Show(t);
+                       onNewMessage(t);
+        
         }
 
 
@@ -36,7 +36,7 @@ namespace ChatApp
 
         public void RefreshListOnline(List<string> list)
         {
-            throw new NotImplementedException();
+            onRefreshListOnline(list);
         }
     }
 
@@ -49,10 +49,18 @@ namespace ChatApp
         public FormChatClient()
         {
             InitializeComponent();
+            cch = new ChatCallbackHandler();
+            ChatCallbackHandler.onNewMessage += (t) => { lbChat.Items.Add(t); };
+            ChatCallbackHandler.onRefreshListOnline += (t) => {
+               // lbUsers.Items.Clear();
+                lbUsers.DataSource = t;
+                
+            };
         }
-        private void FormChatClient_FormClosed(object sender, FormClosedEventArgs e)
+        private async void FormChatClient_FormClosed(object sender, FormClosedEventArgs e)
         {
-         
+
+          await  ChatCallbackHandler.clientProxy.DisconectAsync(UserName);
             Application.Exit();
         }
 
@@ -69,8 +77,7 @@ namespace ChatApp
             FormAuth fa = new FormAuth();
             this.Enabled=false;
             fa.Show(this);
-            cch = new ChatCallbackHandler();
-            cch.onNewMessage += (t) => { lbChat.Items.Add(t); };
+            
         }
 
         
@@ -78,7 +85,7 @@ namespace ChatApp
         {
             await ChatCallbackHandler.clientProxy.ConnectAsync(UserName);
         }
-        public void RefreshListOnline(List<string> list)
+        public void onRefreshListOnline(List<string> list)
         {
             lbUsers.Items.Clear();
             lbUsers.DataSource = list;
